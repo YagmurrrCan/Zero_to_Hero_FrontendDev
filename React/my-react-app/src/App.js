@@ -2,86 +2,114 @@
 import './App.css';
 import Card from './components/Card';
 import { useState } from 'react';
-import { Button } from '@mantine/core';
+import { Container, Grid, Stack, Button, Input, Textarea, Checkbox } from '@mantine/core';
 
-// let arr = ["Mountain 1", "Mountain 2", "Mountain 3", "Mountain 4", "Mountain 5", "Mountain 6" ];
 
 let arr = [
   {
     id: 1,
     title: "Mountain 1",
-    p: "Açıklama 1",
+    par: "Açıklama 1",
   },
   {
     id: 2,
     title: "Mountain 2",
-    p: "Açıklama 2",
+    par: "Açıklama 2",
   },
   {
     id: 3,
     title: "Mountain 3",
-    p: "Açıklama 3",
+    par: "Açıklama 3",
   },
   {
     id: 4,
     title: "Mountain 4",
-    p: "Açıklama 4",
+    par: "Açıklama 4",
   },
   {
     id: 5,
     title: "Mountain 5",
-    p: "Açıklama 5",
+    par: "Açıklama 5",
   },
   {
     id: 6,
     title: "Mountain 6",
-    p: "Açıklama 6",
+    par: "Açıklama 6",
   },
 ]
 
 const App = () => {
-  const [val, setVal] = useState(11);
+  const [title, setTitle] = useState("");
+  const [paragraph, setParagraph] = useState("");
+  const [list, setList] = useState(arr);
+  const [val, setVal] = useState([]);
+  const click = () => {
+    if (title !== "" && paragraph !== "") {
+      setTitle("");
+      setParagraph("");
+      setList([
+        ...list,
+        {
+          id: 5,
+          title,
+          par: paragraph,
+        },
+      ]);
+    }
+  };
 
   return (
-    <div>
-      <h1> Başlık</h1>
-      <h2> Ders {val} </h2>
-      <Button>Click me!</Button>;
-      <button onClick={() => {
-        setVal(val + 1);
-      }}
-      >
-        Arttır.
-      </button>
-      <button onClick={() => {
-        setVal(val - 1);
-      }}
-      >
-        Azalt.
-      </button>
-      <button onClick={() => {
-        setVal(100);
-      }}
-      >
-        100'e getir.
-      </button>
+    <Container>
+      <h1> Create cards app </h1>
 
-      <p>Yazı</p>   
+      <Stack>
 
-      <div className='Cards'>
-        {arr.map( ({title, p}, i) => {
-          return <Card key= {`index ${i}`} title={title} p={p} val={val}  i={i} />  
-        })}
+        <Input.Wrapper label = "Title"  withAsterisk>
+            <Input 
+              placeholder = "Please give a title here!" 
+              value = {title} 
+              onChange = {(e) => setTitle(e.target.value)} 
+            />
+        </Input.Wrapper>
 
-        {/* <Card title="Mountain 1" p = "Açıklama 1" />
-        <Card title="Mountain 2" p = "Açıklama 2" />
-        <Card title="Mountain 3" p = "Açıklama 3" />
-        <Card title="Mountain 4" p = "Açıklama 4" />
-        <Card title="Mountain 5" p = "Açıklama 5" />
-        <Card title="Mountain 6" p = "Açıklama 6" /> */}
-       
-      </div>
-    </div>
+        <Textarea
+          placeholder = "Paragraph..."
+          label = "Paragraph"
+          value = {paragraph}
+          onChange = {(e) => setParagraph(e.target.value)} 
+        />
+        
+        <Button 
+          variant="outline" 
+          color="submission" 
+          radius="md" 
+          onClick = {click}
+        >
+            Create
+        </Button>
+
+      </Stack>
+
+
+      <h2>Cards: </h2>
+
+      <Grid>
+        {list.map(({ par, title }, i) => (
+          <Grid.Col span={4} key={`index ${i}`}>
+            <Card
+              par={par}
+              title={title}
+              i={i}
+              click={() => {
+                let copyList = [...list];
+                copyList.splice(i, 1);
+                setList(copyList);
+              }}
+            />
+          </Grid.Col>
+        ))}
+      </Grid>
+    </Container>
   );
 }
 
