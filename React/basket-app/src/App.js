@@ -1,38 +1,44 @@
 
 import './App.css';
 import React from 'react';
-import { ActionIcon, Container, SimpleGrid, Group, Drawer, Indicator, List, ThemeIcon, Stack, Button, Input } from '@mantine/core';
+import { ActionIcon, Badge, Container, SimpleGrid, Group, Drawer, Indicator, List, ThemeIcon, Stack, Button, Input } from '@mantine/core';
 import Card from "./components/Card"
 import {useState} from 'react';
 import { IconAdjustments, IconShoppingCart, IconCircleCheck, IconCircleDashed } from '@tabler/icons';
 
 const storeItems = [
 {
+  id: 100,
   name:"Keyboard",
   src: "keyboard",
   price: 1000
 },
 {
+  id: 101,
   name:"Phone",
   src: "phone",
   price: 1500
 },
 {
+  id: 102,
   name:"Camera",
   src: "camera",
   price: 500
 },
 {
+  id: 103,
   name:"Joystick",
   src: "joystick",
   price: 500
 },
 {
+  id: 104,
   name:"Headphone",
   src: "headphone",
   price: 500
 },
 {
+  id: 105,
   name:"Computer Desk",
   src: "desk",
   price: 500
@@ -43,8 +49,21 @@ function App() {
   let [basketItems, setBasketItems] = useState([]);
   let [searchValue, setSearchValue] = useState("");
   let [opened, setOpened] = useState(false);
-  let filteredItems = storeItems.filter((item) => item.name.toLowerCase().indexOf(searchValue.toLowerCase()) >= 0);
+  let filteredItems = storeItems.filter(
+    (item) => item.name.toLowerCase().indexOf(searchValue.toLowerCase()) >= 0
+  );
   // let filteredItems = basketItems.filter((item) => item.name.indexOf("a") >= 0);
+  let addToBasket = ({ id, name}) => {
+    let basketIndex = basketItems.findIndex((item) => item.id === id);
+    if (basketIndex >= 0) {
+      let _basketItems = [...basketItems];
+      _basketItems[basketIndex].count += 1;
+      setBasketItems(_basketItems);
+    } 
+    else {
+    setBasketItems([...basketItems, {id, name, count:1 }]);
+    }
+  };
   return (
     <Container className="App">
 
@@ -66,13 +85,13 @@ function App() {
       </Group>
 
       <SimpleGrid cols={3} className="store">
-        {filteredItems.map(({ name, src }) => {
+        {filteredItems.map(({ id, name, src }) => {
           return (
             <Card  
               key={name} 
               name={name}
               src={src} 
-              onAdd={() => setBasketItems([...basketItems, { name }])}
+              onAdd={() => addToBasket({ id, name})}
               
             />
           );
@@ -99,8 +118,13 @@ function App() {
             </ThemeIcon>
           }
             >
-          {basketItems.map( ({name}, index) => (
-            <List.Item key={index}> {name} </List.Item> 
+          {basketItems.map( ({name, count}, index) => (
+            <List.Item key={index}> 
+              <Group>
+                <div>{name}</div>  
+                <Badge variant="light"> {count} </Badge>
+              </Group>
+            </List.Item> 
           ))}
         </List>   
       </Drawer>
