@@ -1,7 +1,7 @@
 
 import './App.css';
 import React from 'react';
-import { Container, SimpleGrid, Group, Drawer, List, ThemeIcon, Stack, Button, Input } from '@mantine/core';
+import { Container, SimpleGrid, Group, Drawer, Indicator, List, ThemeIcon, Stack, Button, Input } from '@mantine/core';
 import Card from "./components/Card"
 import {useState} from 'react';
 import { IconCircleCheck, IconCircleDashed } from '@tabler/icons';
@@ -48,7 +48,7 @@ function App() {
   return (
     <Container className="App">
 
-      <Group align= "end">
+      <Group align= "end" position="center" spacing="xl">
         <Input.Wrapper label="Search">
           <Input 
             value={searchValue}
@@ -57,7 +57,10 @@ function App() {
         </Input.Wrapper>
 
         <Button onClick={() => setSearchValue("")}>Delete</Button>
-        <Button onClick={() => setOpened(true)}>Basket</Button>
+        <Indicator label= {basketItems.length} color="gray" showZero={false} inline size={15} >
+          <Button onClick={() => setOpened(true)}>Basket</Button>
+        </Indicator>
+
       </Group>
 
       <SimpleGrid cols={3} className="store">
@@ -84,20 +87,19 @@ function App() {
         >
         
         <List
-        className="list"
-        spacing="xs"
-        size="sm"
-        center
-        icon={
-          <ThemeIcon color="teal" size={24} radius="xl">
-            <IconCircleCheck size={16} />
-          </ThemeIcon>
-        }
-          >
-        {basketItems.map( ({name}, index) => (
-          <List.Item key={index}> {name} </List.Item> 
-        ))}
-        
+          className="list"
+          spacing="xs"
+          size="sm"
+          center
+          icon={
+            <ThemeIcon color="teal" size={24} radius="xl">
+              <IconCircleCheck size={16} />
+            </ThemeIcon>
+          }
+            >
+          {basketItems.map( ({name}, index) => (
+            <List.Item key={index}> {name} </List.Item> 
+          ))}
         </List>   
       </Drawer>
 
