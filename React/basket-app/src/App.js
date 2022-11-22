@@ -1,10 +1,10 @@
 
 import './App.css';
 import React from 'react';
-import { Container, SimpleGrid, Group, Drawer, Indicator, List, ThemeIcon, Stack, Button, Input } from '@mantine/core';
+import { ActionIcon, Container, SimpleGrid, Group, Drawer, Indicator, List, ThemeIcon, Stack, Button, Input } from '@mantine/core';
 import Card from "./components/Card"
 import {useState} from 'react';
-import { IconCircleCheck, IconCircleDashed } from '@tabler/icons';
+import { IconAdjustments, IconShoppingCart, IconCircleCheck, IconCircleDashed } from '@tabler/icons';
 
 const storeItems = [
 {
@@ -58,7 +58,9 @@ function App() {
 
         <Button onClick={() => setSearchValue("")}>Delete</Button>
         <Indicator label= {basketItems.length} color="gray" showZero={false} inline size={15} >
-          <Button onClick={() => setOpened(true)}>Basket</Button>
+          <ActionIcon onClick={() => setOpened(true)} radius={10} color="dark" variant='filled' size="lg">
+            <IconShoppingCart size={16} />
+          </ActionIcon>
         </Indicator>
 
       </Group>
