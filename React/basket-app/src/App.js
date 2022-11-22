@@ -1,7 +1,7 @@
 
 import './App.css';
 import React from 'react';
-import { Container, SimpleGrid, Group, List, ThemeIcon, Stack, Button, Input } from '@mantine/core';
+import { Container, SimpleGrid, Group, Drawer, List, ThemeIcon, Stack, Button, Input } from '@mantine/core';
 import Card from "./components/Card"
 import {useState} from 'react';
 import { IconCircleCheck, IconCircleDashed } from '@tabler/icons';
@@ -42,6 +42,7 @@ const storeItems = [
 function App() {
   let [basketItems, setBasketItems] = useState([]);
   let [searchValue, setSearchValue] = useState("");
+  let [opened, setOpened] = useState(false);
   let filteredItems = storeItems.filter((item) => item.name.toLowerCase().indexOf(searchValue.toLowerCase()) >= 0);
   // let filteredItems = basketItems.filter((item) => item.name.indexOf("a") >= 0);
   return (
@@ -56,6 +57,7 @@ function App() {
         </Input.Wrapper>
 
         <Button onClick={() => setSearchValue("")}>Delete</Button>
+        <Button onClick={() => setOpened(true)}>Basket</Button>
       </Group>
 
       <SimpleGrid cols={3} className="store">
@@ -72,22 +74,33 @@ function App() {
         })}
       </SimpleGrid> 
 
-      <List
-      className="list"
-      spacing="xs"
-      size="sm"
-      center
-      icon={
-        <ThemeIcon color="teal" size={24} radius="xl">
-          <IconCircleCheck size={16} />
-        </ThemeIcon>
-      }
-    >
-      {basketItems.map( ({name}, index) => (
-        <List.Item key={index}> {name} </List.Item> 
-      ))}
       
-    </List>   
+      <Drawer
+        opened={opened}
+        onClose={() => setOpened(false)}
+        title="My Baskets"
+        padding="md"
+        size="md"
+        >
+        
+        <List
+        className="list"
+        spacing="xs"
+        size="sm"
+        center
+        icon={
+          <ThemeIcon color="teal" size={24} radius="xl">
+            <IconCircleCheck size={16} />
+          </ThemeIcon>
+        }
+          >
+        {basketItems.map( ({name}, index) => (
+          <List.Item key={index}> {name} </List.Item> 
+        ))}
+        
+        </List>   
+      </Drawer>
+
     </Container>
   );
 }
