@@ -1,0 +1,34 @@
+
+// // 360deg/12=30
+//   now.getHours()*30;
+// // 360deg/60=6
+//   now.getMinutes();
+//   now.getSeconds();
+
+let numbersDiv = document.getElementById("numbers");
+
+for(let i=0; i<12; i++) {
+    let numberDiv = document.createElement("div");
+    numberDiv.classList.add("text");
+    numberDiv.innerText = i+1;
+   
+    let ang = ( ( (i+1) * 30 -90 ) / 180 *Math.PI);
+    numberDiv.style.left = `${Math.cos(ang) * 300 +400}px`;
+    numberDiv.style.top = `${Math.sin(ang) * 300+ 400}px`;
+    numbersDiv.appendChild(numberDiv);
+}
+
+function timeFnc() {
+    let now = new Date();
+    let hour = document.querySelector(".hour");
+    let minute = document.querySelector(".minute");       
+    let second = document.querySelector(".second");
+
+    hour.style ="transform: rotate(15deg)";
+    hour.style = `transform: rotate(${now.getHours() * 30}deg)`;
+    minute.style = `transform: rotate(${now.getMinutes() * 6}deg)`;
+    second.style = `transform: rotate(${now.getSeconds() * 6}deg)`;
+}
+
+setInterval(timeFnc, 1000);
+timeFnc();
