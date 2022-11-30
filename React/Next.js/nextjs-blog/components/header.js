@@ -13,11 +13,10 @@ export default () => (
     <div>
         <HeaderDiv>
             <Link href="/" passHref>Home</Link>
-        </HeaderDiv>
-        
-        <div>
+       
             <Link href="/about" passHref>About</Link>
-        </div>
+       
+        </HeaderDiv>
         
     </div>   
 );

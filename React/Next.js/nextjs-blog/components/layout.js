@@ -1,16 +1,24 @@
 import Link from "next/link";
 import Header from "./Header";
 import styled from "styled-components";
+import { createGlobalStyle } from "styled-components"
 
-const styledHeader = styled(Header)`
-    border: 10px solid yellow;
-    background-color: red;
+const GlobalStyle = createGlobalStyle `
+    body {
+        margin: 0;
+    }
+`;
+
+
+const BodyDiv = styled.div`
+   margin: 0;
+   padding: 0;
 `;
 
 export default ({title, children}) => (
-    <div>
+    <Header>
         <h1>{title}</h1>
-        <styledHeader/>
+        
         <div style={{padding: '20px', margin: '20px', backgroundColor: 'tomato' }}>
             {children}
         </div>
@@ -23,5 +31,5 @@ export default ({title, children}) => (
             Powered by vercel
             </a>
         </footer>
-    </div>
+    </Header>
 );
