@@ -5,43 +5,42 @@ import { useState } from 'react';
 import { Container, Grid, Stack, Button, Input, Textarea, Checkbox } from '@mantine/core';
 
 
-let arr = [
-  {
-    id: 1,
-    title: "Mountain 1",
-    par: "Açıklama 1",
-  },
-  {
-    id: 2,
-    title: "Mountain 2",
-    par: "Açıklama 2",
-  },
-  {
-    id: 3,
-    title: "Mountain 3",
-    par: "Açıklama 3",
-  },
-  {
-    id: 4,
-    title: "Mountain 4",
-    par: "Açıklama 4",
-  },
-  {
-    id: 5,
-    title: "Mountain 5",
-    par: "Açıklama 5",
-  },
-  {
-    id: 6,
-    title: "Mountain 6",
-    par: "Açıklama 6",
-  },
-]
-
 const App = () => {
+
   const [title, setTitle] = useState("");
   const [paragraph, setParagraph] = useState("");
-  const [list, setList] = useState(arr);
+  const [list, setList] = useState(  [
+    {
+      id: 1,
+      title: "Mountain 1",
+      par: "Açıklama 1",
+    },
+    {
+      id: 2,
+      title: "Mountain 2",
+      par: "Açıklama 2",
+    },
+    {
+      id: 3,
+      title: "Mountain 3",
+      par: "Açıklama 3",
+    },
+    {
+      id: 4,
+      title: "Mountain 4",
+      par: "Açıklama 4",
+    },
+    {
+      id: 5,
+      title: "Mountain 5",
+      par: "Açıklama 5",
+    },
+    {
+      id: 6,
+      title: "Mountain 6",
+      par: "Açıklama 6",
+    },
+  ] );
   const [val, setVal] = useState([]);
   const click = () => {
     if (title !== "" && paragraph !== "") {
