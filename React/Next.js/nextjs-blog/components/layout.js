@@ -9,20 +9,27 @@ const GlobalStyle = createGlobalStyle `
     }
 `;
 
-
 const BodyDiv = styled.div`
    margin: 0;
    padding: 0;
 `;
 
+const Footer = styled.footer`
+   background-color: #ccc;
+   padding: 20px;
+`;
+
+const Content = styled.div`
+   background-color: red;
+   padding: 20px;
+`;
+
 export default ({title, children}) => (
-    <Header>
+    <BodyDiv>
         <h1>{title}</h1>
-        
-        <div style={{padding: '20px', margin: '20px', backgroundColor: 'tomato' }}>
-            {children}
-        </div>
-        <footer>
+        <Header/>
+        <Content> {children} </Content>    
+        <Footer>
             <a
             href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
             target="_blank"
@@ -30,6 +37,6 @@ export default ({title, children}) => (
             >
             Powered by vercel
             </a>
-        </footer>
-    </Header>
+        </Footer>
+    </BodyDiv>
 );
