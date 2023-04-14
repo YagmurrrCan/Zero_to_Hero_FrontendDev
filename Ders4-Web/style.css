@@ -1,22 +1,22 @@
 
-@font-face {
+  @font-face {
     font-family: Poppins;
-    src: url(/assets/fonts/Poppins-ExtraLight.ttf);
+    src: url(/Ders4-Web/assets/fonts/Poppins-ExtraLight.ttf);
     font-weight: 200;
   }
   @font-face {
     font-family: Poppins;
-    src: url(/assets/fonts/Poppins-Light.ttf);
+    src: url(/Ders4-Web/assets/fonts/Poppins-Light.ttf);
     font-weight: 300;
   }
   @font-face {
     font-family: Poppins;
-    src: url(/assets/fonts/Poppins-Medium.ttf);
+    src: url(/Ders4-Web/assets/fonts/Poppins-Medium.ttf);
     font-weight: 500;
   }
   @font-face {
     font-family: Poppins;
-    src: url(/assets/fonts/Poppins-Bold.ttf);
+    src: url(/Ders4-Web/assets/fonts/Poppins-Bold.ttf);
     font-weight: 700;
   }
 
@@ -97,7 +97,7 @@ section {
 }
 
 .main {
-    background-image: url(/assets/images/main.jpg);
+    background-image: url(/Ders4-Web/assets/images/main.jpg);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -148,7 +148,7 @@ section {
   }
   
 .gallery {
-    background-image: url(/assets/images/gallery.jpg);
+    background-image: url(/Ders4-Web/assets/images/gallery.jpg);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -219,8 +219,7 @@ section {
 }
 
 .about {
-    background-image: url(/assets/images/about.jpg);
-    
+    background-image: url(/Ders4-Web/assets/images/about.jpg);  
     display: flex;
     justify-content: center;
     align-items: center;
